@@ -1,0 +1,39 @@
+<%= provide(:title, t("signup_page.title")) %>
+<div class="register-box">
+  <%= render "shared/error_messages", object: @user %>
+  <div class="register-logo">
+    <%= link_to t("signup_page.title"), root_path %>
+  </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg"><%= t("signup_page.description") %></p>
+      <%= form_for(@user, url: password_reset_path(params[:id])) do |f|%>
+        <%= render "shared/error_messages", object: f.object %>
+        <%= hidden_field_tag :email, @user.email %>
+        <div class="input-group mb-3">
+          <%= f.password_field :password, class: "form-control",
+            placeholder: t("signup_page.password") %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password_confirmation, class: "form-control",
+            placeholder: t("signup_page.password_confirm") %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <%= f.submit t("app_button.update_pass"),
+            class: "btn btn-primary btn-block btn-flat" %>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.form-box -->
+  </div>
+</div>

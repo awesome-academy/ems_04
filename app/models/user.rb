@@ -1,8 +1,18 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  attr_accessor :remember_token, :reset_token
 
   has_many :exams, dependent: :destroy
   has_many :subjects, dependent: :destroy
+
+  validates :last_name, presence: true, length: {maximum: Settings.max_name}
+  validates :first_name, presence: true, length: {maximum: Settings.max_name}
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
+            uniqueness: {case_sensitive: false},
+            length: {maximum: Settings.max_email}
+  validates :password, presence: true, length: {minimum: Settings.min_password},
+            allow_nil: true
 
   enum role: {trainee: 0, supervisor: 1, admin: 2}
 
@@ -40,6 +50,20 @@ class User < ApplicationRecord
   # forget remmeber token
   def forget
     update_attribute :remember_digest, nil
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_columns(reset_digest: User.digest(reset_token),
+      reset_sent_at: Time.zone.now)
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    reset_sent_at < Settings.time_exprired.hours.ago
   end
 
   def full_name

@@ -27,3 +27,32 @@ en:
     label_password: "Password"
     valid_account: "Invalid email/password combination"
     require_login: "Required login to continue"
+  signup_page:
+    title: "Sign up"
+    description: "Register a new membership"
+    last_name: "Last name"
+    first_name: "First name"
+    email: "Email"
+    password: "Password"
+    password_confirm: "Password confirm"
+    register_success: "Registed successfuly. Login your account"
+  error_count:
+    one: "The form contains %{count} error"
+    other: "The form contains %{count} errors"
+  user_mailer:
+    hi_message: "Hi %{name}"
+    subject_reset: "Password reset"
+    pass_reset_content: "To reset your password click on the link below:"
+    content_reset: "Reset password"
+    time_expried: "This link will expire in %{time_expired} hours."
+  forgot_page:
+    title: "Forgot password"
+    sent_link: "Sent successfully. Please check mail to change password"
+    invalid_email: "Email invalid. Please check again."
+    description: "Please enter your email to receive link reset password"
+    expired_time: "Invalid link or expried time to reset"
+    blank_pass: "Password not blank"
+    done_reset: "Reset successfully."
+  app_button:
+    submit: "Submit"
+    update_pass: "Update password"

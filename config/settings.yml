@@ -1,1 +1,10 @@
 remember_me: "1"
+max_name: 30
+max_email: 60
+min_password: 6
+time_exprired: 2
+custome_valid: 7
+host_mail: "smtp.gmail.com"
+port_mail: 587
+domain_mail: "herokuapp.com"
+authentication_mail: "plain"
