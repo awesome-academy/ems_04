@@ -1,3 +1,19 @@
 en:
   hello: "Hello world"
   title: "Exam Management System"
+  static_pages:
+    home_page:
+      text: "Welcome to homepage"
+    help_page:
+      text: "Welcome to help page"
+  header_menu:
+    home: "Home"
+    help: "Help"
+  sidebar_menu:
+    subject: "Subject Management"
+  sidebar:
+    user_info: "Sang Vo"
+  footer:
+    text: "Make in Sun *"
+    copyright: "Sun*. All rights reserved."
+
