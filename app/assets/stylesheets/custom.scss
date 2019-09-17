@@ -9,3 +9,9 @@
   margin-top: 45px;
   @include box_sizing;
 }
+
+.info {
+  p {
+    color: $white;
+  }
+}

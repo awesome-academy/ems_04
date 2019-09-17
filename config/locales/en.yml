@@ -11,9 +11,19 @@ en:
     help: "Help"
   sidebar_menu:
     subject: "Subject Management"
+    logout: "Logout"
   sidebar:
     user_info: "Sang Vo"
   footer:
     text: "Make in Sun *"
     copyright: "Sun*. All rights reserved."
-
+  login_page:
+    title: "Login"
+    description: "Sign in to start your session"
+    fogot_pass: "I forgot my password"
+    create_acc: "Register a new membership"
+    remember: "Remember Me"
+    label_email: "Email"
+    label_password: "Password"
+    valid_account: "Invalid email/password combination"
+    require_login: "Required login to continue"
