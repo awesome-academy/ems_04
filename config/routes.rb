@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   get "/help", to: "static_pages#help"
 
+  namespace :admin do
+    resources :subjects, except: :show
+  end
+
   resources :users, only: [:new, :create]
   resources :password_resets, except: [:show, :destroy]
 end

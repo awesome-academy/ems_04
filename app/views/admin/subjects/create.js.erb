@@ -1,0 +1,6 @@
+<% if @subject.valid? %>
+  $('#exampleModal').dialog('close');
+  $('#exampleModal').remove();
+<% else %>
+  $('#exampleModal').html('<%= j render "admin/subjects/modal_form" %>');
+<% end %>
