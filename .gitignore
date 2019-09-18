@@ -18,5 +18,5 @@
 
 .byebug_history
 
-# ignore database cofig
+# ignore database config
 config/database.yml
