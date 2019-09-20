@@ -1,0 +1,31 @@
+<% provide(:title, t("forgot_page.title")) %>
+<div class="register-box">
+  <div class="login-logo">
+    <%= t("forgot_page.title") %>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">
+        <%= t("forgot_page.description") %>
+      </p>
+
+      <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.text_field :email, class: "form-control",
+            placeholder: t("login_page.label_email") %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+          <div class="col-4">
+            <%= f.submit t("app_button.submit"), class: "btn btn-primary btn-block btn-flat" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>

@@ -13,6 +13,7 @@
   <%= render "layouts/shim" %>
 </head>
 <body class="hold-transition login-page">
+  <%= render "layouts/navbar_fluid" %>
   <div class="login-box">
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
