@@ -1,0 +1,54 @@
+<% provide(:title, t("login_page.title")) %>
+<div class="login-box">
+  <div class="login-logo">
+    <%= t("login_page.title") %>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">
+        <%= t("login_page.description") %>
+      </p>
+
+      <%= form_for(:session, url: login_path) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.text_field :email, class: "form-control", placeholder: t("login_page.label_email") %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <%= f.password_field :password, class: "form-control", placeholder: t("login_page.label_password") %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <%= f.label :remember_me do %>
+                <%= f.check_box :remember_me %>
+                <span> <%= t("login_page.remember") %></span>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-4">
+            <%= f.submit t("login_page.title"), class: "btn btn-primary btn-block btn-flat" %>
+          </div>
+        </div>
+      <% end %>
+
+      <p class="mb-1">
+        <%= link_to t("login_page.fogot_pass"), "#" %>
+      </p>
+      <p class="mb-0">
+        <%= link_to t("login_page.create_acc"), "#" %>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
