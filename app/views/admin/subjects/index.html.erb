@@ -1,0 +1,53 @@
+<% provide(:title, t("subject.title")) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h3><%= t("subject.title") %></h3>
+      <div class="card">
+        <div class="card-header">
+          <%= button_tag(type: "button",class: "btn btn-info",
+            data: {toggle: "modal", target: "#exampleModal"}) do %>
+            <i class="fas fa-plus"></i>
+            <%= t "app_button.add_new" %>
+          <% end %>
+          <div class="card-tools">
+            <div class="input-group input-group-sm">
+              <input type="text" name="table_search" class="form-control float-right"
+                placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><%= t "subject.s_id" %></th>
+                <th><%= t "subject.s_name" %></th>
+                <th><%= t "subject.s_duaration" %></th>
+                <th><%= t "subject.s_questtion" %></th>
+                <th><%= t "subject.s_score" %></th>
+                <th><%= t "subject.s_create_by" %></th>
+                <th><%= t "subject.s_action" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render @subjects %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+      <div class="digg_pagination">
+        <%= will_paginate @subjects %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal">
+  <%= render "admin/subjects/modal_form" %>
+</div>

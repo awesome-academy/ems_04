@@ -1,0 +1,25 @@
+<% index = subject_counter + 1 %>
+<tr id="subject_<%= subject.id %>">
+  <td><%= index %></td>
+  <td><%= subject.subject_name %></td>
+  <td>
+    <small class="badge badge-danger">
+      <i class="far fa-clock"></i>
+      <%= subject.duaration %>
+      <%= t "subject.s_duaration_time" %>
+    </small>
+  </td>
+  <td><%= subject.limit_questions %></td>
+  <td><%= subject.total_score %></td>
+  <td><%= subject.user.full_name %></td>
+  <td>
+    <%= link_to edit_admin_subject_path(subject), remote: true,
+      data: {toggle: "modal", target: "#exampleModal"} do %>
+      <i class="far fa-edit"></i>
+    <% end %>
+    <%= link_to admin_subject_path(subject), method: :delete,
+      data: {confirm: t("subject.confirm_delete")} do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>

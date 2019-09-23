@@ -1,0 +1,65 @@
+@import 'variables';
+
+.pagination {
+  background: $white;
+}
+.digg_pagination {
+  cursor: pointer;
+  float: right;
+  margin-bottom: 20px;
+  a, span, em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px;
+  }
+  .disabled {
+    color: $color-black;
+    border: 1px solid $gray-border;
+  }
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    background: $blue-dark;
+    color: $white;
+    border: 1px solid $blue-dark;
+  }
+  a {
+    text-decoration: none;
+    color: $blue-light;
+    border: 1px solid $color-gray-blue;
+    &:hover, &:focus {
+      color: $color-purple;
+      border-color: $color-purple;
+    }
+  }
+  .page_info {
+    background: $blue-dark;
+    color: $white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center;
+    b {
+      color: $color-purple;
+      background: $blue-light;
+      padding: 0.1em 0.25em;
+    }
+  }
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+* {
+  html .digg_pagination {
+    height: 1%;
+  }
+  &:first-child + html .digg_pagination {
+    overflow: hidden;
+  }
+}

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :reset_token
 
   has_many :exams, dependent: :destroy
-  has_many :subjects, dependent: :destroy
+  has_many :subjects, class_name: Subject.name, foreign_key: :create_by,
+    dependent: :destroy
 
   validates :last_name, presence: true, length: {maximum: Settings.max_name}
   validates :first_name, presence: true, length: {maximum: Settings.max_name}
