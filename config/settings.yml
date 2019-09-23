@@ -8,3 +8,6 @@ host_mail: "smtp.gmail.com"
 port_mail: 587
 domain_mail: "herokuapp.com"
 authentication_mail: "plain"
+page_subject: 5
+max_subject_name: 120
+user_deleted: 1

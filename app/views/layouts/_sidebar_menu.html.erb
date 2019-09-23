@@ -1,12 +1,10 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <li class="nav-item">
-      <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-th"></i>
-        <p>
-          <%= t("sidebar_menu.subject") %>
-        </p>
-      </a>
+      <%= link_to admin_subjects_path, class: "nav-link text-success" do %>
+        <i class="nav-icon fas fas fa-th-large"></i>
+        <p><%= t("sidebar_menu.subject") %></p>
+      <% end %>
     </li>
     <li class="nav-item">
       <%= link_to logout_path, method: :delete , class: "nav-link text-danger" do %>

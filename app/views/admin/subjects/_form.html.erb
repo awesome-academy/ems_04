@@ -1,0 +1,45 @@
+<% url_action =  @subject.new_record? ? admin_subjects_path : admin_subject_path %>
+<%= form_for @subject, url: url_action, remote: true  do |f| %>
+<%= render "shared/error_messages", object: f.object %>
+<div class="form-group">
+  <%= f.label :subject_namem, t("subject.s_name") %>
+  <%= f.text_field :subject_name, class: "form-control" %>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label :duaration, t("subject.s_duaration") %>
+      <div class="input-group mb-3">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-stopwatch"></i></span>
+        </div>
+        <%= f.text_field :duaration, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label :limit_questions, t("subject.s_questtion") %>
+      <div class="input-group mb-3">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-question"></i></span>
+        </div>
+        <%= f.text_field :limit_questions, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label :total_score, t("subject.s_score") %>
+      <div class="input-group mb-3">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fas fa-check"></i></span>
+        </div>
+        <%= f.text_field :total_score, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= f.submit @subject.new_record? ? t("app_button.add_new") : t("app_button.update"),
+  class: "btn btn-primary" %>
+<% end %>

@@ -21,3 +21,11 @@ User.create!(last_name: "Test",
   bio: "Suppervisor",
   password: "123456",
   password_confirmation: "123456")
+
+# List subject by User
+20.times do
+  Subject.create(subject_name: Faker::Lorem.sentence,
+    duaration: rand(10..60),
+    total_score: rand(10..120),
+    limit_questions: rand(10..40),
+    create_by: User.all.sample.id)
