@@ -4,8 +4,9 @@ class Admin::SubjectsController < ApplicationController
   before_action :load_subject, except: %i(index create new)
 
   def index
-    @subjects = current_user.subjects.lastest.paginate(page: params[:page],
-      per_page: Settings.page_subject)
+    @subjects = current_user.subjects.active.lastest
+                            .paginate(page: params[:page],
+                              per_page: Settings.page_subject)
     @subject = Subject.new
   end
 
@@ -37,7 +38,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def destroy
-    if @subject.destroy
+    if @subject.deleted
       flash[:success] = t "subject.delete_success"
     else
       flash[:danger] = t "subject.delete_failed"

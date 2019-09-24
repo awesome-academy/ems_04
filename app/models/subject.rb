@@ -8,4 +8,11 @@ class Subject < ApplicationRecord
   validates :duaration, :total_score, :limit_questions, presence: true
 
   scope :lastest, ->{order created_at: :desc}
+
+  enum is_deleted: {active: 0, deleted: 1}
+
+  def deleted
+    update_attributes is_deleted: Settings.user_deleted,
+      deleted_at: Time.zone.now
+  end
 end

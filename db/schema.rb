@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190918040852) do
+ActiveRecord::Schema.define(version: 20190923070627) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer_content"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20190918040852) do
     t.integer "create_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "is_deleted", default: 0
+    t.datetime "deleted_at"
   end
 
   create_table "user_answer_exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
