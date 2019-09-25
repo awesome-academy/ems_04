@@ -3,9 +3,10 @@ en:
   title: "Exam Management System"
   time:
     formats:
-      default: "%d-%m-%Y %H:%M:%S"
+      default: "%d-%m-%Y %H:%M:%S %p"
       long: "%d %B, %Y"
       short: "%d %b"
+      time_spent: "%H:%M:%S"
   static_pages:
     home_page:
       text: "Welcome to homepage"
@@ -106,3 +107,7 @@ en:
     finish: "Finish"
     date_create: "Date create: %{date_create}"
     remaining_time: "Remaining Time"
+    exam_updated: "Your submit has submitted"
+    expired_time: "Expried submit your exam!"
+    confirm_finish: "Are you sure finish? Finish not edit"
+    updated_failed: "Updated exam failed"

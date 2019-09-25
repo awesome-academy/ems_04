@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20190923070627) do
 
   create_table "exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "start_time"
+    t.datetime "finish_time"
     t.bigint "subject_id"
     t.bigint "user_id"
     t.integer "status", default: 0
@@ -65,7 +66,6 @@ ActiveRecord::Schema.define(version: 20190923070627) do
 
   create_table "user_answer_exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "exam_id"
-    t.integer "status", default: 0
     t.integer "question_id"
     t.text "answer_user"
     t.boolean "is_correct", default: false

@@ -14,7 +14,7 @@
     </small>
   </td>
   <td><%= exam.subject.limit_questions %></td>
-  <td><%= Settings.default_time %></td>
+  <td><%= spent_time exam %></td>
   <td>
     <% if exam.start?  %>
       <%= link_to t("app_button.start") , exam, class: "btn btn-primary" %>
