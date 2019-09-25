@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20191002151813) do
-
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer_content"
     t.bigint "question_id"
@@ -29,6 +28,8 @@ ActiveRecord::Schema.define(version: 20191002151813) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "exam_score", default: 0
+    t.boolean "is_passed", default: false
     t.index ["subject_id"], name: "index_exams_on_subject_id"
     t.index ["user_id"], name: "index_exams_on_user_id"
   end

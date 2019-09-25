@@ -22,3 +22,4 @@ time_zone: "Asia/Bangkok"
 per_page_question: 10
 min_score: 0
 question_deleted: 1
+none_value: "..."

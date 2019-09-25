@@ -13,6 +13,12 @@
           <p><%= t "sidebar_menu.question" %></p>
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to admin_exams_path, class: "nav-link " do %>
+          <i class="far fa-circle nav-icon text-info"></i>
+          <p><%= t "sidebar_menu.admin_exam" %></p>
+        <% end %>
+      </li>
       <% end %>
     <li class="nav-item">
       <%= link_to exams_path, class: "nav-link " do %>

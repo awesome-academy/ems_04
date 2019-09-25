@@ -10,7 +10,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects, except: :show
-    resources :questions, except: :show
+    resources :exams, only: %i(index update)
+    resources :questions, except: :show do
+      collection do
+        get :search, to: "questions#search_question"
+      end
+    end
   end
 
   resources :exams, except: :destroy

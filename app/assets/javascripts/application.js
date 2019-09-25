@@ -4,5 +4,10 @@
 //= require turbolinks
 //= require adminlte.min.js
 //= require select2/select2.full.min.js
+//= require jquery-ui/jquery-ui.min.js
+//= require i18n
+//= require i18n.js
+//= require i18n/translations
 //= require main.js
 //= require timer.js
+//= require admin/exam
