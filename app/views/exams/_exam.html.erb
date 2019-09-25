@@ -17,9 +17,9 @@
   <td><%= Settings.default_time %></td>
   <td>
     <% if exam.start?  %>
-      <%= link_to t("app_button.start") , "#", class: "btn btn-primary" %>
+      <%= link_to t("app_button.start") , exam, class: "btn btn-primary" %>
     <% else %>
-      <%= link_to t("app_button.view"), "#", class: "btn btn-success" %>
+      <%= link_to t("app_button.view"), exam, class: "btn btn-success" %>
     <% end %>
   </td>
 </tr>

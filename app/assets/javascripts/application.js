@@ -3,3 +3,4 @@
 //= require rails-ujs
 //= require turbolinks
 //= require adminlte.min.js
+//= require main.js
