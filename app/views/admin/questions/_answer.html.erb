@@ -1,0 +1,16 @@
+<tr>
+  <td>
+    <%= f.text_field :answer_content, class: "form-control" %>
+  </td>
+  <td>
+    <%= f.check_box :is_correct %>
+  </td>
+  <td>
+    <%= f.hidden_field :_destroy, as: :hidden %>
+    <%= link_to "#", class: "remove_record text-danger" do %>
+    <i class="far fa-trash-alt"></i> <%= t "app_button.delete" %>
+    <% end %>
+  </td>
+</tr>
+
+

@@ -2,7 +2,6 @@
 <tr id="question_<%= question.id %>">
   <td><%= index %></td>
   <td><%= question.question_content %></td>
-
   <td><%= question.single_choice? ? t("t.question_page.single") : "question_page.multi" %></td>
   <td><%= question.score %></td>
   <td><%= question.subject_name %></td>
