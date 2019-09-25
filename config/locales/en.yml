@@ -1,6 +1,11 @@
 en:
   hello: "Hello world"
   title: "Exam Management System"
+  time:
+    formats:
+      default: "%d-%m-%Y %H:%M:%S"
+      long: "%d %B, %Y"
+      short: "%d %b"
   static_pages:
     home_page:
       text: "Welcome to homepage"
@@ -11,6 +16,7 @@ en:
     help: "Help"
   sidebar_menu:
     subject: "Subject Management"
+    exam: "Create exam"
     logout: "Logout"
   sidebar:
     user_info: "Sang Vo"
@@ -59,6 +65,9 @@ en:
     add_new: "Add new"
     update: "Update"
     close: "Close"
+    create_exam: "Create exam"
+    view: "View"
+    start: "Start"
   subject:
     title: "Subject management"
     s_id: "STT"
@@ -78,3 +87,17 @@ en:
     delete_failed: "Delete failed"
   errors_message:
     access_denied: "Access denied!"
+  exam_page:
+    success: "Create exam successfully"
+    failed: "Create exam failed"
+    failed_question: "Too few questions"
+    e_id: "STT"
+    e_created_at: "Create at"
+    e_subject: "Subject name"
+    e_status: "Status"
+    e_duaration: "Duaration"
+    e_question: "Question number"
+    s_spent_time: "Spent time"
+    list_exam: "List of Exam"
+    failed_create_qs: "Failed create question %{message}"
+    subject_fail: "Subject failed"

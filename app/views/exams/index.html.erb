@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <%= form_for @exam do |f| %>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= f.select :subject_id, options_for_select(list_subject, @exam.id), {},
+          {class: "custom-select"} %>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit t("app_button.create_exam"), class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+  <h3><%= t "exam_page.list_exam" %></h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= t "exam_page.e_id" %></th>
+        <th><%= t "exam_page.e_created_at" %></th>
+        <th><%= t "exam_page.e_subject" %></th>
+        <th><%= t "exam_page.status" %></th>
+        <th><%= t "exam_page.e_duaration" %></th>
+        <th><%= t "exam_page.e_question" %></th>
+        <th><%= t "exam_page.s_spent_time" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @exams %>
+    </tbody>
+  </table>
+  <div class="digg_pagination">
+    <%= will_paginate @exams %>
+  </div>
+  <div class="clearfix"></div>
+</div>

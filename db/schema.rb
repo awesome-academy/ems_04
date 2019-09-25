@@ -21,14 +21,6 @@ ActiveRecord::Schema.define(version: 20190923070627) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
-  create_table "exam_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "exam_id"
-    t.integer "question_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exam_id", "question_id"], name: "index_exam_questions_on_exam_id_and_question_id"
-  end
-
   create_table "exams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "start_time"
     t.bigint "subject_id"
@@ -38,6 +30,14 @@ ActiveRecord::Schema.define(version: 20190923070627) do
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_exams_on_subject_id"
     t.index ["user_id"], name: "index_exams_on_user_id"
+  end
+
+  create_table "exams_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "exam_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id", "question_id"], name: "index_exams_questions_on_exam_id_and_question_id"
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

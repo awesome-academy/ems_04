@@ -1,9 +1,17 @@
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <% if current_user.admin? %>
+      <li class="nav-item">
+        <%= link_to admin_subjects_path, class: "nav-link text-success" do %>
+          <i class="nav-icon fas fas fa-th-large"></i>
+          <p><%= t("sidebar_menu.subject") %></p>
+        <% end %>
+      </li>
+      <% end %>
     <li class="nav-item">
-      <%= link_to admin_subjects_path, class: "nav-link text-success" do %>
+      <%= link_to exams_path, class: "nav-link text-success" do %>
         <i class="nav-icon fas fas fa-th-large"></i>
-        <p><%= t("sidebar_menu.subject") %></p>
+        <p><%= t("sidebar_menu.exam") %></p>
       <% end %>
     </li>
     <li class="nav-item">

@@ -8,6 +8,7 @@ class Subject < ApplicationRecord
   validates :duaration, :total_score, :limit_questions, presence: true
 
   scope :lastest, ->{order created_at: :desc}
+  scope :sort_by_name, ->{order subject_name: :asc}
 
   enum is_deleted: {active: 0, deleted: 1}
 

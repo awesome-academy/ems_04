@@ -11,3 +11,5 @@ authentication_mail: "plain"
 page_subject: 5
 max_subject_name: 120
 user_deleted: 1
+per_page_exam: 10
+default_time: "00:00:00"
