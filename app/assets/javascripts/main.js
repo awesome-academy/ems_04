@@ -25,3 +25,26 @@ $(document).ready(function () {
     }
   })
 })
+
+$(document).on('turbolinks:load', function(){
+  $('#subject-select').select2({
+    width: '100%',
+    theme: 'bootstrap4'
+  });
+  $('#user-select').select2({
+    width: '100%',
+    theme: 'bootstrap4'
+  });
+    $('#question_subject_id').select2({
+    width: '100%',
+    theme: 'bootstrap4'
+  });
+  $('#question_question_type').select2({
+    width: '100%',
+    theme: 'bootstrap4'
+  });
+    $('#qs-type-select').select2({
+    width: '100%',
+    theme: 'bootstrap4'
+  });
+});
