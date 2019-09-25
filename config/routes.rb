@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects, except: :show
+    resources :questions, except: :show
   end
 
   resources :exams, except: :destroy

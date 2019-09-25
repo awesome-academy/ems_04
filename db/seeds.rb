@@ -58,7 +58,6 @@ Answer.create(answer_content: Faker::Lorem.sentence,
     question_id: Question.all.sample.id)
 end
 
-
 # Create question multi choice
 subject = Subject.first
 

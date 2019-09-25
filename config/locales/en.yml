@@ -18,6 +18,7 @@ en:
   sidebar_menu:
     subject: "Subject Management"
     exam: "Create exam"
+    question: "Question management"
     logout: "Logout"
   sidebar:
     user_info: "Sang Vo"
@@ -69,6 +70,7 @@ en:
     create_exam: "Create exam"
     view: "View"
     start: "Start"
+    search: "Search"
   subject:
     title: "Subject management"
     s_id: "STT"
@@ -111,3 +113,21 @@ en:
     expired_time: "Expried submit your exam!"
     confirm_finish: "Are you sure finish? Finish not edit"
     updated_failed: "Updated exam failed"
+  question_page:
+    q_title: "Question management"
+    q_id: "STT"
+    q_content: "Question content"
+    q_type: "Type"
+    q_score: "Score"
+    q_subject: "Subject"
+    q_author: "Author"
+    q_action: "Choose action"
+    search_title: "Search questions"
+    static: "Statics"
+    list_question: "List questions"
+    choose_subject: "Choose subject"
+    choose_user: "Choose user"
+    choose_date: "Date:"
+    question_name: "Question name:"
+    single: "Single"
+    multi: "Multi"

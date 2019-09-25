@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
+  scope :sort_by_first_name, ->{order first_name: :asc}
+
   has_secure_password
 
   # Decrypt a string
