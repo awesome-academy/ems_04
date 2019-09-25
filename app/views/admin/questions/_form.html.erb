@@ -1,0 +1,52 @@
+<%= form_for(@question, url: admin_questions_path) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="id_label_single">
+          <%= t "question_page.choose_subject" %>
+        </label>
+        <%= f.select :subject_id, options_for_select(list_subject), id: "subject-select" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :question_content %>
+    <%= f.text_area :question_content, class: "form-control" %>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="id_label_single">
+          <%= t "question_page.choose_subject" %>
+        </label>
+        <%= f.select :question_type, options_for_select(qs_type_list), id: "qs-type-select" %>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <%= f.label :score %>
+        <%= f.number_field :score, class: "form-control", min: Settings.min_score %>
+      </div>
+    </div>
+  </div>
+   <table class="table">
+    <thead>
+      <tr>
+        <th><%= t "question_page.option" %></th>
+        <th><%= t "question_page.correct" %></th>
+        <th><%= t "question_page.delete" %></th>
+      </tr>
+    </thead>
+      <tbody class="fields">
+        <%= f.fields_for :answers do |builder| %>
+          <%= render "answer", fobj: builder %>
+        <% end %>
+    </tbody>
+  </table>
+  <div class="list-questions">
+    <div class="form-group">
+      <%= link_to_add_row(t("question_page.add_answer"), f, :answers, class: "add_row") %>
+    </div>
+      <%= f.submit t("question_page.add_quesion"), class: "btn btn-primary" %>
+<% end %>
