@@ -1,0 +1,25 @@
+<% index = exam_counter + 1 %>
+<tr id="exam_<%= exam.id %>">
+  <td><%= index %></td>
+  <td><%= l exam.created_at %></td>
+  <td>
+    <%= exam.subject.subject_name %>
+  </td>
+  <td><%= exam.status %></td>
+  <td>
+    <small class="badge badge-danger">
+      <i class="far fa-clock"></i>
+      <%= exam.subject.duaration %>
+      <%= t "subject.s_duaration_time" %>
+    </small>
+  </td>
+  <td><%= exam.subject.limit_questions %></td>
+  <td><%= Settings.default_time %></td>
+  <td>
+    <% if exam.start?  %>
+      <%= link_to t("app_button.start") , "#", class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to t("app_button.view"), "#", class: "btn btn-success" %>
+    <% end %>
+  </td>
+</tr>
