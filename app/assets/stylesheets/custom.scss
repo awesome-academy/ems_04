@@ -35,6 +35,18 @@
   background: $white;
   padding: 5px;
 }
+
+.exam label {
+  display: block;
+  font-weight: normal !important;
+}
+
+.fixed-clock {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+}
+
 @media (min-width: 576px){
   .login-page .main-header {
     margin-left: 0;

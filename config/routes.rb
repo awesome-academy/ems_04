@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :subjects, except: :show
   end
 
-  resources :exams, only: [:index, :create]
-  resources :users, only: [:new, :create]
-  resources :password_resets, except: [:show, :destroy]
+  resources :exams, except: :destroy
+  resources :users, only: %i(new create)
+  resources :password_resets, except: %i(show destroy)
 end

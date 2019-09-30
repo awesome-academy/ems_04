@@ -101,3 +101,8 @@ en:
     list_exam: "List of Exam"
     failed_create_qs: "Failed create question %{message}"
     subject_fail: "Subject failed"
+    exam_not_found: "Exam not found"
+    save: "Save"
+    finish: "Finish"
+    date_create: "Date create: %{date_create}"
+    remaining_time: "Remaining Time"

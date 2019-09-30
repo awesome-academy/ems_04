@@ -1,0 +1,18 @@
+<% provide :title, @exam.subject.subject_name %>
+<div class="container-fluid">
+  <div class="exam-info">
+    <h3 class="text-center mb-5"><%= @exam.subject.subject_name %></h3>
+    <p class="text-center mb-5">
+      <%= t "exam_page.date_create", date_create: l(@exam.created_at) %>
+      </p>
+  </div>
+  <div class="exam">
+    <%= render "form" %>
+  </div>
+  <%= hidden_field_tag :remaining_time, @remaining_time %>
+  <div class="timer fixed-clock ">
+    <h4><%= t "exam_page.remaining_time" %></h4>
+    <div id="clock"></div>
+  </div>
+</div>
+
