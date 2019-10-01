@@ -1,6 +1,7 @@
 class ExamsController < ApplicationController
   before_action :logged_in_user
   before_action :load_exam, :valid_user, only: %i(show update)
+  before_action :check_time_expired, only: :update
 
   def index
     @exams = current_user.exams.exam_lastest.includes(:subject)
@@ -20,7 +21,7 @@ class ExamsController < ApplicationController
           end
         end
       rescue StandardError
-        flash[:danger] = t("exam_page.failed")
+        flash[:danger] = t "exam_page.failed"
         redirect_to exams_path
       end
     else
@@ -30,11 +31,47 @@ class ExamsController < ApplicationController
   end
 
   def show
-    @remaining_time = @exam.subject.duaration
+    if @exam.start?
+      begin
+        ActiveRecord::Base.transaction do
+          @exam.update! status: Exam.statuses[:doing]
+          update_time_exam @exam
+        end
+      rescue StandardError
+        flash[:danger] = t "exam_page.failed"
+        redirect_to exams_path
+      end
+    end
+    @remaining_time = if @exam.start? || @exam.doing?
+                        @exam.finish_time
+                      else
+                        Settings.time_remaning_default
+                      end
     @questions = @exam.questions.includes(:answers)
+    @user_answered = @exam.user_answer_exams
+                          .map{|x| [x.question_id, x.answer_user]}.to_h
   end
 
-  def update; end
+  def update
+    if detail_params.nil?
+      flash[:success] = t "exam_page.exam_updated"
+    else
+      begin
+        ActiveRecord::Base.transaction do
+          update_user_answer detail_params.keys
+          flash[:success] = t "exam_page.exam_updated"
+          if params[:commit] == Settings.submit_finish
+            @exam.update_attributes(status: Exam.statuses[:uncheck],
+              finish_time: Time.zone.now)
+          end
+        end
+      rescue StandardError
+        flash[:danger] = t "exam_page.updated_failed"
+        redirect_to exams_path
+      end
+    end
+    redirect_to exams_path
+  end
 
   private
 
@@ -45,6 +82,10 @@ class ExamsController < ApplicationController
 
   def user_answer_params
     params.require(:exam).permit :detail_question_answer
+  end
+
+  def detail_params
+    params[:exam][:detail_question_answer] if params[:exam].present?
   end
 
   def check_limit_question?
@@ -71,10 +112,55 @@ class ExamsController < ApplicationController
     redirect_to exams_path
   end
 
+  def check_time_expired
+    return if Time.zone.now < @exam.finish_time
+    begin
+      @exam.update! status: Exam.statuses[:uncheck]
+    rescue StandardError
+      flash[:danger] = t "exam_page.expired_time"
+      redirect_to exams_path
+    end
+  end
+
+  def check_correct question_id, answer
+    question = Question.find_by id: question_id
+    return unless question
+    if question.single_choice?
+      answer_correct = Answer.find_by id: answer.to_i
+      return unless answer_correct
+      answer_correct.is_correct?
+    else
+      array_correct_ans = question.answers.correct_answer.pluck(:id)
+      answer_user = answer.map(&:to_i)
+      (array_correct_ans - answer_user).blank?
+    end
+  end
+
+  def update_time_exam exam
+    time_finish = Time.now + exam.subject.duaration * Settings.hour_num
+    @exam.update_attributes(start_time: Time.zone.now, finish_time: time_finish)
+  end
+
+  def update_user_answer list_qs_answer
+    @exam.user_answer_exams.each do |question_exam|
+      list_qs_answer.each do |user_qs|
+        next unless question_exam.question_id == user_qs.to_i
+        correct = check_correct user_qs.to_i, detail_params[user_qs]
+        question_exam.update_attributes answer_user: detail_params[user_qs],
+          is_correct: correct
+      end
+    end
+  end
+
   def random_question_for exam
     qs_random_ids = Question.find_by_subject(exam.subject_id)
                             .order("rand()")
                             .limit(exam.subject.limit_questions)
     exam.questions << qs_random_ids
+    exam_qs = qs_random_ids.pluck(:id)
+    exam_qs.each do |qs|
+      user_question = @exam.user_answer_exams.build question_id: qs
+      user_question.save
+    end
   end
 end

@@ -11,8 +11,11 @@
   </div>
   <%= hidden_field_tag :remaining_time, @remaining_time %>
   <div class="timer fixed-clock ">
-    <h4><%= t "exam_page.remaining_time" %></h4>
-    <div id="clock"></div>
+    <h4 class="text-center"><%= t "exam_page.remaining_time" %></h4>
+    <div id="timer">
+      <div id="hours"></div>
+      <div id="minutes"></div>
+      <div id="seconds"></div>
+    </div>
   </div>
 </div>
-
