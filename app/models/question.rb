@@ -16,6 +16,17 @@ class Question < ApplicationRecord
 
   scope :load_by_subject, ->(subject_id){where subject_id: subject_id}
   scope :lastest, ->{order created_at: :desc}
+  scope :search_by_content, lambda {|qs_content|
+    where "question_content LIKE (?)", "%#{qs_content}%"
+  }
+  scope :search_by_date, ->(date){where created_at: date}
+  scope :search_by_user, ->(user_id){where create_by: user_id}
 
   enum question_type: {single_choice: 0, multi_choice: 1}
+  enum is_deleted: {active: 0, deleted: 1}
+
+  def deleted
+    update_attributes is_deleted: Settings.question_deleted,
+      deleted_at: Time.zone.now
+  end
 end
