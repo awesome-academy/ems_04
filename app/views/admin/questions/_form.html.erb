@@ -1,4 +1,5 @@
-<%= form_for(@question, url: admin_questions_path) do |f| %>
+<% url_action =  @question.new_record? ? admin_questions_path : admin_question_path %>
+<%= form_for(@question, url: url_action) do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="row">
     <div class="col-md-4">
@@ -49,5 +50,5 @@
     <div class="form-group">
       <%= link_to_add_row(t("question_page.add_answer"), f, :answers, class: "add_row") %>
     </div>
-      <%= f.submit t("question_page.add_quesion"), class: "btn btn-primary" %>
+      <%= f.submit @question.new_record? ? t("app_button.add_new") : t("app_button.update"), class: "btn btn-primary" %>
 <% end %>

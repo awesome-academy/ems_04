@@ -9,7 +9,7 @@
     <%= question.user.full_name %>
   </td>
   <td>
-    <%= link_to "#", class: "btn btn-primary btn-sm" do %>
+    <%= link_to edit_admin_question_path(question), class: "btn btn-primary btn-sm" do %>
       <i class="far fa-eye"></i>
     <% end %>
     <%= link_to "#", class: "btn btn-danger btn-sm" do %>

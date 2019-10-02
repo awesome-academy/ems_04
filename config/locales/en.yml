@@ -141,3 +141,6 @@ en:
     delete: "Delete"
     add_answer: "Add answer"
     add_quesion: "Add question"
+    edit_question: "Edit question"
+    update_success: "Updated question successfully"
+    update_failed: "Update question failed"
