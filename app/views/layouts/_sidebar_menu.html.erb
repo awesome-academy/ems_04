@@ -2,22 +2,28 @@
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <% if current_user.admin? %>
       <li class="nav-item">
-        <%= link_to admin_subjects_path, class: "nav-link text-success" do %>
-          <i class="nav-icon fas fas fa-th-large"></i>
-          <p><%= t("sidebar_menu.subject") %></p>
+        <%= link_to admin_subjects_path, class: "nav-link" do %>
+          <i class="nav-icon far fa-bookmark text-warning"></i>
+          <p><%= t "sidebar_menu.subject" %></p>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admin_questions_path, class: "nav-link " do %>
+          <i class="nav-icon fas fa-clipboard-list text-info"></i>
+          <p><%= t "sidebar_menu.question" %></p>
         <% end %>
       </li>
       <% end %>
     <li class="nav-item">
-      <%= link_to exams_path, class: "nav-link text-success" do %>
-        <i class="nav-icon fas fas fa-th-large"></i>
-        <p><%= t("sidebar_menu.exam") %></p>
+      <%= link_to exams_path, class: "nav-link " do %>
+        <i class="nav-icon fas fas fa-th-large text-success"></i>
+        <p><%= t "sidebar_menu.exam" %></p>
       <% end %>
     </li>
     <li class="nav-item">
       <%= link_to logout_path, method: :delete , class: "nav-link text-danger" do %>
         <i class="nav-icon fas fa-sign-out-alt"></i>
-        <p><%= t("sidebar_menu.logout") %></p>
+        <p><%= t "sidebar_menu.logout" %></p>
       <% end %>
     </li>
 

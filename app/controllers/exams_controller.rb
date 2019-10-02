@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
   def index
     @exams = current_user.exams.exam_lastest.includes(:subject)
                          .paginate page: params[:page],
-                          per_page: Settings.per_page_exam
+                            per_page: Settings.per_page_exam
     @exam = Exam.new
   end
 
@@ -94,7 +94,7 @@ class ExamsController < ApplicationController
       flash[:danger] = "exam_page.subject_fail"
       redirect_to exams_path
     else
-      Question.find_by_subject(subject.id).size >= subject.limit_questions
+      Question.load_by_subject(subject.id).size >= subject.limit_questions
     end
   end
 
@@ -122,7 +122,7 @@ class ExamsController < ApplicationController
     end
   end
 
-  def check_correct question_id, answer
+  def check_correct? question_id, answer
     question = Question.find_by id: question_id
     return unless question
     if question.single_choice?
@@ -145,7 +145,7 @@ class ExamsController < ApplicationController
     @exam.user_answer_exams.each do |question_exam|
       list_qs_answer.each do |user_qs|
         next unless question_exam.question_id == user_qs.to_i
-        correct = check_correct user_qs.to_i, detail_params[user_qs]
+        correct = check_correct? user_qs.to_i, detail_params[user_qs]
         question_exam.update_attributes answer_user: detail_params[user_qs],
           is_correct: correct
       end
@@ -153,7 +153,7 @@ class ExamsController < ApplicationController
   end
 
   def random_question_for exam
-    qs_random_ids = Question.find_by_subject(exam.subject_id)
+    qs_random_ids = Question.load_by_subject(exam.subject_id)
                             .order("rand()")
                             .limit(exam.subject.limit_questions)
     exam.questions << qs_random_ids

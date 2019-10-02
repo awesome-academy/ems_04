@@ -11,10 +11,4 @@ class ApplicationController < ActionController::Base
     flash[:danger] = t "login_page.require_login"
     redirect_to login_url(returnUrl: session[:forwarding_url])
   end
-
-  def check_admin
-    return if current_user.admin?
-    flash[:danger] = t "errors_message.access_denied"
-    redirect_to root_path
-  end
 end

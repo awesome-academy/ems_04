@@ -1,0 +1,20 @@
+<% index = question_counter + 1 %>
+<tr id="question_<%= question.id %>">
+  <td><%= index %></td>
+  <td><%= question.question_content %></td>
+
+  <td><%= question.single_choice? ? t("t.question_page.single") : "question_page.multi" %></td>
+  <td><%= question.score %></td>
+  <td><%= question.subject_name %></td>
+  <td>
+    <%= question.user.full_name %>
+  </td>
+  <td>
+    <%= link_to "#", class: "btn btn-primary btn-sm" do %>
+      <i class="far fa-eye"></i>
+    <% end %>
+    <%= link_to "#", class: "btn btn-danger btn-sm" do %>
+      <i class="far fa-trash-alt"> </i>
+    <% end %>
+  </td>
+</tr>

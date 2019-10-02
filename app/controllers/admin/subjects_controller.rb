@@ -1,4 +1,4 @@
-class Admin::SubjectsController < ApplicationController
+class Admin::SubjectsController < Admin::AdminController
   before_action :logged_in_user
   before_action :check_admin, except: :show
   before_action :load_subject, except: %i(index create new)

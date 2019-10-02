@@ -17,3 +17,5 @@ hour_num: 60
 submit_finish: "Finish"
 time_remaning_default: 0
 time_spent_format: "%H:%M:%S"
+per_page_question: 10
+time_zone: "Asia/Bangkok"
