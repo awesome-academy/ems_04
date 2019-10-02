@@ -153,7 +153,7 @@ class ExamsController < ApplicationController
   end
 
   def random_question_for exam
-    qs_random_ids = Question.load_by_subject(exam.subject_id)
+    qs_random_ids = Question.load_by_subject(exam.subject_id).active
                             .order("rand()")
                             .limit(exam.subject.limit_questions)
     exam.questions << qs_random_ids

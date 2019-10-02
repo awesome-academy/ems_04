@@ -144,3 +144,6 @@ en:
     edit_question: "Edit question"
     update_success: "Updated question successfully"
     update_failed: "Update question failed"
+    delete_success: "Delete question successfully"
+    delete_failed: "Delete question failed"
+    confirm_delete: "Are you sure delete this question?"
