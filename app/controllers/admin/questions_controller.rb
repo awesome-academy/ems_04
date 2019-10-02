@@ -5,12 +5,11 @@ class Admin::QuestionsController < Admin::AdminController
   before_action :load_subject, only: :create
   before_action :load_list_question_type, only: %i(new create edit)
   before_action :load_question, only: %i(edit update destroy)
-
+  before_action :load_list_user, only: %i(index search_question)
   def index
     @questions = Question.includes(:user, :subject).active.lastest
                          .paginate page: params[:page],
                           per_page: Settings.per_page_question
-    @list_user = User.sort_by_first_name.pluck :first_name, :id
   end
 
   def new
@@ -49,6 +48,16 @@ class Admin::QuestionsController < Admin::AdminController
     redirect_to admin_questions_path
   end
 
+  def search_question
+    @questions = Question.includes(:subject, :user)
+                         .search_by_content(params[:question_content])
+                         .load_by_subject(params[:subject_id])
+                         .search_by_user(params[:create_by])
+                         .paginate(page: params[:page],
+                          per_page: Settings.per_page_question)
+    render :index
+  end
+
   private
 
   def question_params
@@ -77,5 +86,9 @@ class Admin::QuestionsController < Admin::AdminController
 
   def load_list_question_type
     @qs_type_list = Question.question_types.map{|key, val| [key.humanize, key]}
+  end
+
+  def load_list_user
+    @list_user = User.sort_by_first_name.pluck :first_name, :id
   end
 end

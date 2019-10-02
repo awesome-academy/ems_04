@@ -47,4 +47,5 @@ $(document).on('turbolinks:load', function(){
     width: '100%',
     theme: 'bootstrap4'
   });
+  $('#datepicker').datepicker({defaultDate: new Date()});
 });
