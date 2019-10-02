@@ -29,11 +29,15 @@ $(document).ready(function () {
 $(document).on('turbolinks:load', function(){
   $('#subject-select').select2({
     width: '100%',
-    theme: 'bootstrap4'
+    theme: 'bootstrap4',
+    placeholder: 'Select subject',
+    allowClear: true
   });
   $('#user-select').select2({
     width: '100%',
-    theme: 'bootstrap4'
+    theme: 'bootstrap4',
+    placeholder: 'Select user',
+    allowClear: true
   });
     $('#question_subject_id').select2({
     width: '100%',
@@ -47,4 +51,5 @@ $(document).on('turbolinks:load', function(){
     width: '100%',
     theme: 'bootstrap4'
   });
+  $('#datepicker').datepicker({defaultDate: new Date()});
 });
