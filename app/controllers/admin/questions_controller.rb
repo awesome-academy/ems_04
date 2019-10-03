@@ -6,11 +6,13 @@ class Admin::QuestionsController < Admin::AdminController
   def index
     @questions = Question.includes(:user, :subject).lastest
                          .paginate page: params[:page],
-                            per_page: Settings.per_page_question
-    @list_user = User.sort_by_first_name.pluck(:first_name, :id)
+                          per_page: Settings.per_page_question
+    @list_user = User.sort_by_first_name.pluck :first_name, :id
   end
 
+  private
+
   def load_list_subject
-    @list_subject = Subject.sort_by_name.active.pluck(:subject_name, :id)
+    @list_subject = Subject.sort_by_name.active.pluck :subject_name, :id
   end
 end
