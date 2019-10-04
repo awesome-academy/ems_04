@@ -1,9 +1,10 @@
 class Admin::QuestionsController < Admin::AdminController
   before_action :logged_in_user
   before_action :check_admin_supervisor
-  before_action :load_list_subject, only: %i(index new create)
+  before_action :load_list_subject, except: :update
   before_action :load_subject, only: :create
-  before_action :load_list_question_type, only: %i(new create)
+  before_action :load_list_question_type, only: %i(new create edit)
+  before_action :load_question, only: %i(edit update)
 
   def index
     @questions = Question.includes(:user, :subject).lastest
@@ -27,12 +28,30 @@ class Admin::QuestionsController < Admin::AdminController
     end
   end
 
+  def edit; end
+
+  def update
+    if @question.update_attributes question_params
+      flash[:success] = t "question_page.update_success"
+    else
+      flash[:danger] = "question_page.update_failed"
+    end
+    redirect_to admin_questions_path
+  end
+
   private
 
   def question_params
     defaults = {create_by: current_user.id}
     params.require(:question).permit(Question::QUESTIONS_PARAMS)
           .reverse_merge(defaults)
+  end
+
+  def load_question
+    @question = Question.find_by id: params[:id]
+    return if @question
+    flash[:danger] = "question_page.question_not_found"
+    redirect_to admin_questions_path
   end
 
   def load_subject

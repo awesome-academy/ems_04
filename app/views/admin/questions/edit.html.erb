@@ -1,0 +1,12 @@
+<% provide :title, t("question_page.edit_question") %>
+<div class="container-fluid">
+  <div class="card card-success">
+    <div class="card-header">
+      <h3><%= t "question_page.edit_question" %></h3>
+    </div>
+    <div class="card-body">
+      <%= render "form", list_subject: @list_subject, qs_type_list: @qs_type_list %>
+    </div>
+  </div>
+</div>
+
