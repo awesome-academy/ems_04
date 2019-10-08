@@ -16,10 +16,6 @@ module ExamsHelper
     user_answered[question.id]&.include?(answer.id.to_s)
   end
 
-  def disable_button? exam
-    exam.uncheck? || exam.checked?
-  end
-
   def total_question_correct exam
     exam.user_answer_exams.is_correct.size
   end
