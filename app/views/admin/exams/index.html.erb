@@ -1,0 +1,39 @@
+<% provide :title, "List exam" %>
+<div class="container-fluid">
+  <div class="search-form mb-3">
+    <%= form_tag admin_exams_path, method: :get do %>
+      <div class="input-group">
+        <%= text_field :exam, :exam_id ,class: "form-control" %>
+        <span class="input-group-append">
+          <%= button_tag(type: t("app_button.submit"), name: nil, class: "btn btn-primary") do %>
+            <i class="fas fa-search nav-icon"></i>
+            <%= t "app_button.search" %>
+          <% end %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  <h3 class="mb-2"><%= t "exam_page.list_exam" %></h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= t "exam_page.e_id" %></th>
+        <th><%= t "exam_page.e_created_at" %></th>
+        <th><%= t "exam_page.e_subject" %></th>
+        <th><%= t "exam_page.e_status" %></th>
+        <th><%= t "exam_page.e_duaration" %></th>
+        <th><%= t "exam_page.s_spent_time" %></th>
+        <th><%= t "exam_page.s_score" %></th>
+        <th><%= t "exam_page.s_passed" %></th>
+        <th><%= t "exam_page.s_correct" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @exams %>
+    </tbody>
+  </table>
+  <div class="digg_pagination">
+    <%= will_paginate @exams %>
+  </div>
+  <div class="clearfix"></div>
+</div>

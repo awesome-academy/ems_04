@@ -6,15 +6,17 @@
           <%= f.fields_for :detail_question_answer do |detail_a| %>
             <% if question.single_choice? %>
                 <% question.answers.each do |answer| %>
-                  <%= detail_a.label "#{question.id}_#{answer.id}", answer.answer_content do %>
-                      <%= detail_a.radio_button answer.question_id, answer.id, checked: is_checked?(@user_answered, question, answer) %>
+                  <%= detail_a.label "#{question.id}_#{answer.id}", answer.answer_content,
+                    class: hightlight_correct(answer)  do %>
+                      <%= detail_a.radio_button answer.question_id, answer.id, checked: is_checked?(@user_answered, question, answer), disabled: disable_button?(@exam) %>
                     <%= answer.answer_content %>
                   <% end %>
                 <% end %>
               <% else %>
                 <% question.answers.each do |answer| %>
-                  <%= detail_a.label answer.id, answer.answer_content do %>
-                    <%= detail_a.check_box answer.question_id, { class: "checkbox", id: "exam_detail_question_answer_#{answer.id}", multiple: true, checked: is_checked?(@user_answered, question, answer) }, answer.id, false%>
+                  <%= detail_a.label answer.id, answer.answer_content,
+                    class: hightlight_correct(answer) do %>
+                    <%= detail_a.check_box answer.question_id, { class: "checkbox", id: "exam_detail_question_answer_#{answer.id}", multiple: true, checked: is_checked?(@user_answered, question, answer), disabled: disable_button?(@exam) }, answer.id, false %>
                     <%= answer.answer_content %>
                   <% end %>
                 <% end %>

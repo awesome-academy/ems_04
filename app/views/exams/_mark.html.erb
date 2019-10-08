@@ -1,0 +1,20 @@
+<div class="mark-exam container">
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center">
+      <h3><%= t "exam_page.info_subject" %></h3>
+      <ul>
+        <li><%= t "exam_page.time_limit", time_limit: @exam.duaration %></li>
+        <li><%= t "exam_page.score_pass", score: @exam.total_score %></li>
+        <li><%= t "exam_page.number_question", number_question: @exam.limit_questions %></li>
+      </ul>
+    </div>
+    <div class="col-md-6 d-flex">
+      <h3><%= t "exam_page.info_exam" %></h3>
+      <ul>
+        <li><%= t "exam_page.create_by", exam_user: @exam.user.full_name %></li>
+        <li><%= t "exam_page.exam_scored", score: @exam.exam_score %></li>
+        <li><%= t "exam_page.correct",pass_num: total_question_correct(@exam), total_num: @exam.limit_questions %></li>
+      </ul>
+    </div>
+  </div>
+</div>

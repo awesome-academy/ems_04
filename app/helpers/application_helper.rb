@@ -9,11 +9,11 @@ module ApplicationHelper
     end
   end
 
-  def link_to_add_row name, fobj, association, **args
-    new_object = fobj.object.send(association).klass.new
+  def link_to_add_row name, ff, association, **args
+    new_object = ff.object.send(association).klass.new
     id = new_object.object_id
-    fields = fobj.fields_for(association, new_object, child_index: id) do |ans|
-      render(association.to_s.singularize, fobj: ans)
+    fields = ff.fields_for(association, new_object, child_index: id) do |ans|
+      render(association.to_s.singularize, ff: ans)
     end
     link_to(name, "#", class: "add_fields " + args[:class],
       data: {id: id, fields: fields.delete("\n")})

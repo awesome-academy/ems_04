@@ -1,0 +1,27 @@
+<% index = exam_counter + 1 %>
+<tr id="exam_<%= exam.id %>">
+  <td><%= index %></td>
+  <td><%= l exam.created_at %></td>
+  <td>
+    <%= exam.subject.subject_name %>
+  </td>
+  <td><%= exam.status %></td>
+  <td>
+    <small class="badge badge-danger">
+      <i class="far fa-clock"></i>
+      <%= exam.subject.duaration %>
+      <%= t "subject.s_duaration_time" %>
+    </small>
+  </td>
+  <td><%= spent_time exam %></td>
+  <td id="score_<%= exam.id %>"><%= exam.exam_score %></td>
+  <td id="passed_<%= exam.id %>"><%= exam.is_passed? %></td>
+  <td id="correct_<%= exam.id %>"><%= Settings.none_value %></td>
+  <td>
+    <% if exam.checked? %>
+      <%= link_to t("app_button.view"), exam, class: "btn btn-info" %>
+    <% else %>
+      <button class="btn btn-success mark" data-exam-id="<%= exam.id %>"> <%= t "app_button.mark" %></button>
+    <% end %>
+  </td>
+</tr>

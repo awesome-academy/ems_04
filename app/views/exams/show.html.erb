@@ -6,6 +6,16 @@
       <%= t "exam_page.date_create", date_create: l(@exam.created_at) %>
       </p>
   </div>
+  <% if is_admin_supervisor? %>
+    <% if @exam.uncheck? %>
+      <div class="container mark-button mb-5">
+        <button class="btn btn-primary w-25 mark" data-exam-id="<%= @exam.id %>">Mark
+      </button>
+    <% else %>
+      <%= render "mark" %>
+    <% end %>
+    </div>
+  <% end %>
   <div class="exam">
     <%= render "form" %>
   </div>
