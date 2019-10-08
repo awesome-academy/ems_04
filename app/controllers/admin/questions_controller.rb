@@ -1,13 +1,13 @@
 class Admin::QuestionsController < Admin::AdminController
   before_action :logged_in_user
   before_action :check_admin_supervisor
-  before_action :load_list_subject, except: :update
+  before_action :load_list_subject, except: %i(update destroy)
   before_action :load_subject, only: :create
   before_action :load_list_question_type, only: %i(new create edit)
-  before_action :load_question, only: %i(edit update)
+  before_action :load_question, only: %i(edit update destroy)
 
   def index
-    @questions = Question.includes(:user, :subject).lastest
+    @questions = Question.includes(:user, :subject).active.lastest
                          .paginate page: params[:page],
                           per_page: Settings.per_page_question
     @list_user = User.sort_by_first_name.pluck :first_name, :id
@@ -35,6 +35,17 @@ class Admin::QuestionsController < Admin::AdminController
       flash[:success] = t "question_page.update_success"
     else
       flash[:danger] = "question_page.update_failed"
+    end
+    redirect_to admin_questions_path
+  end
+
+  def destroy
+    if @question.exams.blank? && @question.destroy
+      flash[:success] = t "question_page.delete_success"
+    elsif @question.deleted
+      flash[:success] = t "question_page.delete_success"
+    else
+      flash[:danger] = t "question_page.delete_failed"
     end
     redirect_to admin_questions_path
   end

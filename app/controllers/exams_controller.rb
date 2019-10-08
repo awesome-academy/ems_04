@@ -42,11 +42,7 @@ class ExamsController < ApplicationController
         redirect_to exams_path
       end
     end
-    @remaining_time = if @exam.start? || @exam.doing?
-                        @exam.finish_time
-                      else
-                        Settings.time_remaning_default
-                      end
+    load_remainng_time @exam
     @questions = @exam.questions.includes(:answers)
     @user_answered = @exam.user_answer_exams
                           .map{|x| [x.question_id, x.answer_user]}.to_h
@@ -60,10 +56,7 @@ class ExamsController < ApplicationController
         ActiveRecord::Base.transaction do
           update_user_answer detail_params.keys
           flash[:success] = t "exam_page.exam_updated"
-          if params[:commit] == Settings.submit_finish
-            @exam.update_attributes(status: Exam.statuses[:uncheck],
-              finish_time: Time.zone.now)
-          end
+          finish_exam params[:commit]
         end
       rescue StandardError
         flash[:danger] = t "exam_page.updated_failed"
@@ -103,6 +96,20 @@ class ExamsController < ApplicationController
     return if @exam
     flash[:danger] = t "exam_page.exam_not_found"
     redirect_to exams_path
+  end
+
+  def load_remainng_time exam
+    @remaining_time = if exam.start? || exam.doing?
+                        exam.finish_time
+                      else
+                        Settings.time_remaning_default
+                      end
+  end
+
+  def finish_exam commit
+    return unless commit == Settings.submit_finish
+    @exam.update_attributes(status: Exam.statuses[:uncheck],
+      finish_time: Time.zone.now)
   end
 
   def valid_user
@@ -153,14 +160,14 @@ class ExamsController < ApplicationController
   end
 
   def random_question_for exam
-    qs_random_ids = Question.load_by_subject(exam.subject_id)
+    qs_random_ids = Question.load_by_subject(exam.subject_id).active
                             .order("rand()")
                             .limit(exam.subject.limit_questions)
     exam.questions << qs_random_ids
     exam_qs = qs_random_ids.pluck(:id)
     exam_qs.each do |qs|
       user_question = @exam.user_answer_exams.build question_id: qs
-      user_question.save
+      user_question.save!
     end
   end
 end

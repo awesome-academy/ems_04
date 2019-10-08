@@ -18,4 +18,10 @@ class Question < ApplicationRecord
   scope :lastest, ->{order created_at: :desc}
 
   enum question_type: {single_choice: 0, multi_choice: 1}
+  enum is_deleted: {active: 0, deleted: 1}
+
+  def deleted
+    update_attributes is_deleted: Settings.question_deleted,
+      deleted_at: Time.zone.now
+  end
 end

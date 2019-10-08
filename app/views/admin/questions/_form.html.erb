@@ -48,5 +48,6 @@
     <div class="form-group">
       <%= link_to_add_row(t("question_page.add_answer"), f, :answers, class: "add_row") %>
     </div>
-      <%= f.submit @question.new_record? ? t("question_page.add_quesion") : t("app_button.update"), class: "btn btn-primary" %>
+    <%= f.submit @question.new_record? ? t("question_page.add_quesion") : t("app_button.update"), class: "btn btn-primary" %>
+  </div>
 <% end %>
