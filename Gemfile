@@ -29,6 +29,7 @@ group :development, :test do
   gem "capybara", "~> 3.29"
   gem "database_cleaner", "~> 1.7"
   gem "factory_bot_rails", "~> 5.1"
+  gem "rails-controller-testing"
   gem "rspec-rails", "~> 3.8", ">= 3.8.2"
   gem "selenium-webdriver"
   gem "shoulda-matchers"

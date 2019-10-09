@@ -6,9 +6,12 @@
           <%= f.fields_for :detail_question_answer do |detail_a| %>
             <% if question.single_choice? %>
                 <% question.answers.each do |answer| %>
-                  <%= detail_a.label "#{question.id}_#{answer.id}", answer.answer_content,
-                    class: hightlight_correct(answer)  do %>
-                      <%= detail_a.radio_button answer.question_id, answer.id, checked: is_checked?(@user_answered, question, answer), disabled: disable_button?(@exam) %>
+                  <%= detail_a.label "#{question.id}_#{answer.id}",
+                    answer.answer_content,
+                    class: hightlight_correct(answer) do %>
+                    <%= detail_a.radio_button answer.question_id, answer.id,
+                      checked: is_checked?(@user_answered, question, answer),
+                      disabled: @exam.check_done_exam? %>
                     <%= answer.answer_content %>
                   <% end %>
                 <% end %>
@@ -16,7 +19,12 @@
                 <% question.answers.each do |answer| %>
                   <%= detail_a.label answer.id, answer.answer_content,
                     class: hightlight_correct(answer) do %>
-                    <%= detail_a.check_box answer.question_id, { class: "checkbox", id: "exam_detail_question_answer_#{answer.id}", multiple: true, checked: is_checked?(@user_answered, question, answer), disabled: disable_button?(@exam) }, answer.id, false %>
+                    <%= detail_a.check_box answer.question_id,
+                      {class: "checkbox",
+                      id: "exam_detail_question_answer_#{answer.id}",
+                      multiple: true,
+                      checked: is_checked?(@user_answered, question, answer),
+                      disabled: @exam.check_done_exam?}, answer.id, false %>
                     <%= answer.answer_content %>
                   <% end %>
                 <% end %>
@@ -28,7 +36,9 @@
   <% if @exam.start? || @exam.doing? %>
     <div class="container d-flex justify-content-between mt-5">
       <%= f.submit t("exam_page.save"), class: "btn btn-primary w-25", id: "abc" %>
-      <%= f.submit t("exam_page.finish"), data: {confirm: t("exam_page.confirm_finish")}, id: "submit_finish", class: "btn btn-danger w-25" %>
+      <%= f.submit t("exam_page.finish"),
+        data: {confirm: t("exam_page.confirm_finish")},
+        id: "submit_finish", class: "btn btn-danger w-25" %>
     </div>
   <% end %>
 <% end %>

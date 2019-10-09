@@ -4,7 +4,12 @@ FactoryBot.define do
     duaration {rand(10..60)}
     total_score {rand(10..120)}
     limit_questions {rand(10..20)}
-    create_by {1}
-    association :user
+    user
+    factory :invalid_subject do
+      subject_name {""}
+      duaration {""}
+      total_score {""}
+      limit_questions {""}
+    end
   end
 end

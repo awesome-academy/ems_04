@@ -10,4 +10,8 @@ class Exam < ApplicationRecord
 
   enum status: {start: 0, doing: 1, uncheck: 2, checked: 3}
   scope :exam_lastest, ->{order created_at: :desc}
+
+  def check_done_exam?
+    self.uncheck? || self.checked?
+  end
 end
