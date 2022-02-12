@@ -15,7 +15,7 @@ gem "i18n-js"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "mysql2", ">= 0.3.18", "< 0.6.0"
-gem "puma", "~> 3.7"
+gem "puma", "~> 4.3"
 gem "rails", "~> 5.1.7"
 gem "rb-readline"
 gem "rubocop", "~> 0.54.0", require: false
